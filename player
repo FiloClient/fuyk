@@ -716,12 +716,6 @@ Groups.Misc = Tabs.Main:AddRightGroupbox('Misc')
     Groups.Misc:AddButton('Unlock developer notes', ActivateUnlockables)
     Groups.Misc:AddToggle('AutoClaimRings', { Text = 'Auto claim rings' })
 
-Groups.Keybinds = Tabs.Main:AddRightGroupbox('Keybinds')
-    Groups.Keybinds:AddLabel('Sick'):AddKeyPicker('SickBind', { Default = 'One', NoUI = true })
-    Groups.Keybinds:AddLabel('Good'):AddKeyPicker('GoodBind', { Default = 'Two', NoUI = true })
-    Groups.Keybinds:AddLabel('Ok'):AddKeyPicker('OkayBind', { Default = 'Three', NoUI = true })
-    Groups.Keybinds:AddLabel('Bad'):AddKeyPicker('BadBind', { Default = 'Four', NoUI = true })
-
 Groups.Configs = Tabs.Miscellaneous:AddRightGroupbox('Configs')
 Groups.Credits = Tabs.Miscellaneous:AddRightGroupbox('Credits')
     local function addRichText(label)
