@@ -655,7 +655,7 @@ local SaveManager = {} do
 end
 
 local Window = UI:CreateWindow({
-    Title = string.format('funky friday autoplayer - version %s | updated: %s', metadata.version, metadata.updated),
+    Title = string.format('Filo autoplayer - Version 69', metadata.version, metadata.updated),
     AutoShow = true,
     
     Center = true,
@@ -728,8 +728,7 @@ Groups.Credits = Tabs.Miscellaneous:AddRightGroupbox('Credits')
         label.TextLabel.RichText = true
     end
 
-    addRichText(Groups.Credits:AddLabel('<font color="#3da5ff">wally</font> - script'))
-    addRichText(Groups.Credits:AddLabel('<font color="#de6cff">Sezei</font> - contributor'))
+    addRichText(Groups.Credits:AddLabel('<font color="#3da5ff">Chrivav</font> - for making this shit'))
     Groups.Credits:AddLabel('Filo for being great :D')
 
 
