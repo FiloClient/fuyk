@@ -655,7 +655,7 @@ local SaveManager = {} do
 end
 
 local Window = UI:CreateWindow({
-    Title = string.format('Filo Autoplayer v69', metadata.version, metadata.updated),
+    Title = string.format('Filo Autoplayer', metadata.version, metadata.updated),
     AutoShow = true,
     
     Center = true,
@@ -833,3 +833,5 @@ do
 end
 
 UI:Notify(string.format('Loaded script in %.4f second(s)!', tick() - start), 3)
+
+print(ker)
