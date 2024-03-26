@@ -544,7 +544,7 @@ local SaveManager = {} do
     }
 
     function SaveManager:Save(name)
-        local fullPath = 'funky_friday_autoplayer/configs/' .. name .. '.json'
+        local fullPath = 'Filo_Autoplayer/configs/' .. name .. '.json'
 
         local data = {
             version = 2,
@@ -573,7 +573,7 @@ local SaveManager = {} do
     end
 
     function SaveManager:Load(name)
-        local file = 'funky_friday_autoplayer/configs/' .. name .. '.json'
+        local file = 'Filo_Autoplayer/configs/' .. name .. '.json'
         if not isfile(file) then return false, 'invalid file' end
 
         local success, decoded = pcall(httpService.JSONDecode, httpService, readfile(file))
@@ -590,7 +590,7 @@ local SaveManager = {} do
     end
 
     function SaveManager.Refresh()
-        local list = listfiles('funky_friday_autoplayer/configs')
+        local list = listfiles('Filo_Autoplayer/configs')
 
         local out = {}
         for i = 1, #list do
@@ -621,7 +621,7 @@ local SaveManager = {} do
     end
 
     function SaveManager:Delete(name)
-        local file = 'funky_friday_autoplayer/configs/' .. name .. '.json'
+        local file = 'Filo_Autoplayer/configs/' .. name .. '.json'
         if not isfile(file) then return false, string.format('Config %q does not exist', name) end
 
         local succ, err = pcall(delfile, file)
@@ -639,7 +639,7 @@ local SaveManager = {} do
     end
 
     function SaveManager.Check()
-        local list = listfiles('funky_friday_autoplayer/configs')
+        local list = listfiles('Filo_Autoplayer/configs')
 
         for _, file in next, list do
             if isfolder(file) then continue end
@@ -737,8 +737,8 @@ Groups.Misc = Tabs.Miscellaneous:AddRightGroupbox('Miscellaneous')
     UI.ToggleKeybind = Options.MenuToggle
 
 if type(readfile) == 'function' and type(writefile) == 'function' and type(makefolder) == 'function' and type(isfolder) == 'function' then
-    makefolder('funky_friday_autoplayer')
-    makefolder('funky_friday_autoplayer\\configs')
+    makefolder('Filo_Autoplayer')
+    makefolder('Filo_Autoplayer\\configs')
 
     Groups.Configs:AddDropdown('ConfigList', { Text = 'Config list', Values = {}, AllowNull = true })
     Groups.Configs:AddInput('ConfigName',    { Text = 'Config name' })
@@ -814,7 +814,7 @@ do
     themeManager.BuiltInThemes['Default'] = { 1, funkyFridayTheme }
 
     themeManager:SetLibrary(UI)
-    themeManager:SetFolder('funky_friday_autoplayer')
+    themeManager:SetFolder('Filo_Autoplayer')
     themeManager:ApplyToGroupbox(Tabs.Miscellaneous:AddLeftGroupbox('Themes'))
 
     SaveManager:SetIgnoreIndexes({ 
