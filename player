@@ -655,7 +655,7 @@ local SaveManager = {} do
 end
 
 local Window = UI:CreateWindow({
-    Title = string.format('funky friday autoplayer - version %s | updated: %s', metadata.version, metadata.updated),
+    Title = string.format('Filo Autoplayer v69', metadata.version, metadata.updated),
     AutoShow = true,
     
     Center = true,
