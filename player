@@ -718,11 +718,8 @@ Groups.Credits = Tabs.Miscellaneous:AddRightGroupbox('Credits')
         label.TextLabel.RichText = true
     end
 
-    addRichText(Groups.Credits:AddLabel('<font color="#3da5ff">wally</font> - script'))
-    addRichText(Groups.Credits:AddLabel('<font color="#de6cff">Sezei</font> - contributor'))
-    Groups.Credits:AddLabel('Inori - ui library')
-    Groups.Credits:AddLabel('Jan - old ui library')
-
+    addRichText(Groups.Credits:AddLabel('<font color="#3da5ff">Chrivav for making this</font> - script'))
+    addRichText(Groups.Credits:AddLabel('<font color="#de6cff">Filo</font> - For being amazing :D'))
 
 Groups.Misc = Tabs.Miscellaneous:AddRightGroupbox('Miscellaneous')
     Groups.Misc:AddLabel(metadata.message or 'no message found!', true)
