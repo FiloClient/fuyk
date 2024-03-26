@@ -544,7 +544,7 @@ local SaveManager = {} do
     }
 
     function SaveManager:Save(name)
-        local fullPath = 'Filo_Autoplayer/configs/' .. name .. '.json'
+        local fullPath = 'funky_friday_autoplayer/configs/' .. name .. '.json'
 
         local data = {
             version = 2,
@@ -573,7 +573,7 @@ local SaveManager = {} do
     end
 
     function SaveManager:Load(name)
-        local file = 'Filo_Autoplayer/configs/' .. name .. '.json'
+        local file = 'funky_friday_autoplayer/configs/' .. name .. '.json'
         if not isfile(file) then return false, 'invalid file' end
 
         local success, decoded = pcall(httpService.JSONDecode, httpService, readfile(file))
@@ -590,7 +590,7 @@ local SaveManager = {} do
     end
 
     function SaveManager.Refresh()
-        local list = listfiles('Filo_Autoplayer/configs')
+        local list = listfiles('funky_friday_autoplayer/configs')
 
         local out = {}
         for i = 1, #list do
@@ -621,7 +621,7 @@ local SaveManager = {} do
     end
 
     function SaveManager:Delete(name)
-        local file = 'Filo_Autoplayer/configs/' .. name .. '.json'
+        local file = 'funky_friday_autoplayer/configs/' .. name .. '.json'
         if not isfile(file) then return false, string.format('Config %q does not exist', name) end
 
         local succ, err = pcall(delfile, file)
@@ -639,7 +639,7 @@ local SaveManager = {} do
     end
 
     function SaveManager.Check()
-        local list = listfiles('Filo_Autoplayer/configs')
+        local list = listfiles('funky_friday_autoplayer/configs')
 
         for _, file in next, list do
             if isfolder(file) then continue end
@@ -655,7 +655,7 @@ local SaveManager = {} do
 end
 
 local Window = UI:CreateWindow({
-    Title = string.format('Filo autoplayer - Version 69', metadata.version, metadata.updated),
+    Title = string.format('funky friday autoplayer - version %s | updated: %s', metadata.version, metadata.updated),
     AutoShow = true,
     
     Center = true,
@@ -666,6 +666,7 @@ local Tabs = {}
 local Groups = {}
 
 Tabs.Main = Window:AddTab('Main')
+Tabs.Miscellaneous = Window:AddTab('Miscellaneous')
 
 Groups.Autoplayer = Tabs.Main:AddLeftGroupbox('Autoplayer')
     Groups.Autoplayer:AddToggle('Autoplayer', { Text = 'Autoplayer' }):AddKeyPicker('AutoplayerBind', { Default = 'End', NoUI = true, SyncToggleState = true })
@@ -711,14 +712,22 @@ Groups.HitTiming = Tabs.Main:AddLeftGroupbox('Hit timing')
     Groups.HitTiming:AddSlider('HeldDelayMin',   { Text = 'Min held note delay', Min = 0, Max = 100, Default = 0,   Rounding = 0, Compact = true, Suffix = 'ms' })
     Groups.HitTiming:AddSlider('HeldDelayMax',   { Text = 'Max held note delay', Min = 0, Max = 500, Default = 20,  Rounding = 0, Compact = true, Suffix = 'ms' })
 
+Groups.Keybinds = Tabs.Main:AddRightGroupbox('Keybinds')
+    Groups.Keybinds:AddLabel('Sick'):AddKeyPicker('SickBind', { Default = 'One', NoUI = true })
+    Groups.Keybinds:AddLabel('Good'):AddKeyPicker('GoodBind', { Default = 'Two', NoUI = true })
+    Groups.Keybinds:AddLabel('Ok'):AddKeyPicker('OkayBind', { Default = 'Three', NoUI = true })
+    Groups.Keybinds:AddLabel('Bad'):AddKeyPicker('BadBind', { Default = 'Four', NoUI = true })
+
 Groups.Configs = Tabs.Miscellaneous:AddRightGroupbox('Configs')
 Groups.Credits = Tabs.Miscellaneous:AddRightGroupbox('Credits')
     local function addRichText(label)
         label.TextLabel.RichText = true
     end
 
-    addRichText(Groups.Credits:AddLabel('<font color="#3da5ff">Chrivav</font> - for making this shit'))
-    Groups.Credits:AddLabel('Filo for being great :D')
+    addRichText(Groups.Credits:AddLabel('<font color="#3da5ff">wally</font> - script'))
+    addRichText(Groups.Credits:AddLabel('<font color="#de6cff">Sezei</font> - contributor'))
+    Groups.Credits:AddLabel('Inori - ui library')
+    Groups.Credits:AddLabel('Jan - old ui library')
 
 
 Groups.Misc = Tabs.Miscellaneous:AddRightGroupbox('Miscellaneous')
@@ -727,18 +736,18 @@ Groups.Misc = Tabs.Miscellaneous:AddRightGroupbox('Miscellaneous')
     Groups.Misc:AddDivider()
     Groups.Misc:AddButton('Unload script', function() pcall(shared._unload) end)
     Groups.Misc:AddButton('Copy discord', function()
-        if pcall(setclipboard, "https://discord.gg/hJPeav4G4J") then
+        if pcall(setclipboard, "discord.gg/hJPeav4G4J") then
             UI:Notify('Successfully copied discord link to your clipboard!', 5)
         end
     end)
 
-    Groups.Misc:AddLabel('Menu toggle'):AddKeyPicker('MenuToggle', { Default = 'p', NoUI = true })
+    Groups.Misc:AddLabel('Menu toggle'):AddKeyPicker('MenuToggle', { Default = 'Delete', NoUI = true })
 
     UI.ToggleKeybind = Options.MenuToggle
 
 if type(readfile) == 'function' and type(writefile) == 'function' and type(makefolder) == 'function' and type(isfolder) == 'function' then
-    makefolder('Filo_Autoplayer')
-    makefolder('Filo_Autoplayer\\configs')
+    makefolder('funky_friday_autoplayer')
+    makefolder('funky_friday_autoplayer\\configs')
 
     Groups.Configs:AddDropdown('ConfigList', { Text = 'Config list', Values = {}, AllowNull = true })
     Groups.Configs:AddInput('ConfigName',    { Text = 'Config name' })
@@ -814,7 +823,7 @@ do
     themeManager.BuiltInThemes['Default'] = { 1, funkyFridayTheme }
 
     themeManager:SetLibrary(UI)
-    themeManager:SetFolder('Filo_Autoplayer')
+    themeManager:SetFolder('funky_friday_autoplayer')
     themeManager:ApplyToGroupbox(Tabs.Miscellaneous:AddLeftGroupbox('Themes'))
 
     SaveManager:SetIgnoreIndexes({ 
