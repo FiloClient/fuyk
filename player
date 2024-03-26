@@ -718,10 +718,9 @@ Groups.Credits = Tabs.Miscellaneous:AddRightGroupbox('Credits')
         label.TextLabel.RichText = true
     end
 
-    addRichText(Groups.Credits:AddLabel('<font color="#3da5ff">wally</font> - script'))
-    addRichText(Groups.Credits:AddLabel('<font color="#de6cff">Sezei</font> - contributor'))
-    Groups.Credits:AddLabel('Inori - ui library')
-    Groups.Credits:AddLabel('Jan - old ui library')
+    addRichText(Groups.Credits:AddLabel('<font color="#3da5ff">Chrivav</font> - for making this'))
+    addRichText(Groups.Credits:AddLabel('<font color="#de6cff">Filo</font> - for being amazing'))
+    Groups.Credits:AddLabel('Hyprx - idea')
 
 
 Groups.Misc = Tabs.Miscellaneous:AddRightGroupbox('Miscellaneous')
@@ -828,4 +827,4 @@ end
 
 UI:Notify(string.format('Loaded script in %.4f second(s)!', tick() - start), 3)
 
-print(kerwert)
+print(kerwertlll)
