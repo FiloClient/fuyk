@@ -101,6 +101,8 @@ else
     UI = loadstring(game:HttpGet(UIRepo .. 'Library.lua'))()
 end
 
+UI:Notify('Make sure that the percentage is ALWAYS 100%', 5)
+
 local metadata = loadstring(game:HttpGet(ScriptRepo .. 'metadata.lua'))()
 local httpService = game:GetService('HttpService')
 
