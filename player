@@ -173,17 +173,6 @@ local fireSignal, rollChance do
     -- uses a weighted random system
     -- its a bit scuffed rn but it works good enough
 
-    function rollChance()
-        -- if (//library.flags.autoPlayerMode == 'Manual') then
-        if Options.AutoplayerMode.Value == 'Manual' then
-            if (Options.SickBind:GetState()) then return 'Sick' end
-            if (Options.GoodBind:GetState()) then return 'Good' end
-            if (Options.OkayBind:GetState()) then return 'Ok' end
-            if (Options.BadBind:GetState()) then return 'Bad' end
-
-            return 'Bad' -- incase if it cant find one
-        end
-
         local chances = {
             { 'Sick', Options.SickChance.Value },
             { 'Good', Options.GoodChance.Value },
