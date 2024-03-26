@@ -173,6 +173,17 @@ local fireSignal, rollChance do
     -- uses a weighted random system
     -- its a bit scuffed rn but it works good enough
 
+    function rollChance()
+        -- if (//library.flags.autoPlayerMode == 'Manual') then
+        if Options.AutoplayerMode.Value == 'Manual' then
+            if (Options.SickBind:GetState()) then return 'Sick' end
+            if (Options.GoodBind:GetState()) then return 'Good' end
+            if (Options.OkayBind:GetState()) then return 'Ok' end
+            if (Options.BadBind:GetState()) then return 'Bad' end
+
+            return 'Bad' -- incase if it cant find one
+        end
+
         local chances = {
             { 'Sick', Options.SickChance.Value },
             { 'Good', Options.GoodChance.Value },
@@ -644,7 +655,7 @@ local SaveManager = {} do
 end
 
 local Window = UI:CreateWindow({
-    Title = string.format('Filo Autoplay v69', metadata.version, metadata.updated),
+    Title = string.format('funky friday autoplayer - version %s | updated: %s', metadata.version, metadata.updated),
     AutoShow = true,
     
     Center = true,
@@ -701,14 +712,23 @@ Groups.HitTiming = Tabs.Main:AddLeftGroupbox('Hit timing')
     Groups.HitTiming:AddSlider('HeldDelayMin',   { Text = 'Min held note delay', Min = 0, Max = 100, Default = 0,   Rounding = 0, Compact = true, Suffix = 'ms' })
     Groups.HitTiming:AddSlider('HeldDelayMax',   { Text = 'Max held note delay', Min = 0, Max = 500, Default = 20,  Rounding = 0, Compact = true, Suffix = 'ms' })
 
+Groups.Keybinds = Tabs.Main:AddRightGroupbox('Keybinds')
+    Groups.Keybinds:AddLabel('Sick'):AddKeyPicker('SickBind', { Default = 'One', NoUI = true })
+    Groups.Keybinds:AddLabel('Good'):AddKeyPicker('GoodBind', { Default = 'Two', NoUI = true })
+    Groups.Keybinds:AddLabel('Ok'):AddKeyPicker('OkayBind', { Default = 'Three', NoUI = true })
+    Groups.Keybinds:AddLabel('Bad'):AddKeyPicker('BadBind', { Default = 'Four', NoUI = true })
+
 Groups.Configs = Tabs.Miscellaneous:AddRightGroupbox('Configs')
 Groups.Credits = Tabs.Miscellaneous:AddRightGroupbox('Credits')
     local function addRichText(label)
         label.TextLabel.RichText = true
     end
 
-    addRichText(Groups.Credits:AddLabel('<font color="#3da5ff">Chrivav for making this</font> - script'))
-    addRichText(Groups.Credits:AddLabel('<font color="#de6cff">Filo</font> - For being amazing :D'))
+    addRichText(Groups.Credits:AddLabel('<font color="#3da5ff">wally</font> - script'))
+    addRichText(Groups.Credits:AddLabel('<font color="#de6cff">Sezei</font> - contributor'))
+    Groups.Credits:AddLabel('Inori - ui library')
+    Groups.Credits:AddLabel('Jan - old ui library')
+
 
 Groups.Misc = Tabs.Miscellaneous:AddRightGroupbox('Miscellaneous')
     Groups.Misc:AddLabel(metadata.message or 'no message found!', true)
